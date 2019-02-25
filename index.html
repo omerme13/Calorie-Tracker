@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calorie Tracker</title>
+        <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <header>
+                <h1>Calorie Tracker</h1>
+        </header>
+
+        <section class="sec-menu">
+            <form>
+                <input id="item-input" type="text" placeholder="Add item">
+                <input id="calories-input" type="number" placeholder="Add calories">
+                <input type="submit" value="+">
+                <a class="btn clear-tasks" href="#/">Clear all</a>
+            </form>
+        </section>
+
+        <section class="sec-edit">
+            <div class="edit-element">
+                <h2>Update</h2>
+                <a class="ion-compose icon-update icons icons-big" href="#/"></a>
+            </div>
+            <div class="edit-element">
+                <h2>Delete</h2>
+                <a class="ion-trash-a icon-delete icons icons-big" href="#/"></a>
+            </div>
+            <div class="edit-element">
+                <h2>Cancel</h2>
+                <a class="ion-backspace-outline icon-back icons icons-big" href="#/"></a>
+            </div>
+        </section>
+
+        <section class="sec-items">
+            <h2>Total Calories: <span>0</span></h2>
+
+            <ul class="food-items">
+            </ul>
+        </section>
+
+        <div class="modal">
+            <div class="modal-content">
+                <h3>This Action will delete all items.<br> do you wish to continue?</h3>
+                <div class="btn-container">
+                    <a class="ion-checkmark-round btn-modal-v icons icons-big" href="#/"></a>
+                    <a class="ion-close-round btn-modal-x close icons icons-big" href="#/"></a>
+                </div>
+            </div>
+        </div>
+
+        <footer>All rights reserved &copy;</footer>
+
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
