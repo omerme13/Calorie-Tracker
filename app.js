@@ -1,139 +1,76 @@
-// const taskList = document.querySelector('.food-items');
-// const addButton = document.querySelector('.add-task');
-// const clearButton = document.querySelector('.clear-tasks');
-// const taskInput = document.querySelector('#item-input');
-//
-// /* ----------------------------- */
-// /* ----- HELPING FUNCTIONS ----- */
-// function addIconToTask(listItem) {
-//     const icon = document.createElement('a');
-//     icon.className = 'ion-edit delete-task icon-delete icons';
-//     listItem.appendChild(icon);
-// }
-//
-// function addTask(listName, content) {
-//     const li = document.createElement('li');
-//
-//     li.appendChild(document.createTextNode(content));
-//     addIconToTask(li);
-//     listName.appendChild(li);
-// }
-//
-// function initTasksInLS(tasks) {
-//     if (localStorage.getItem('tasks') === null) {
-//         return tasks = [];
-//     } else {
-//         return tasks = JSON.parse(localStorage.getItem('tasks'));
-//     }
-// }
-//
-// function initFinishedTasksInLS(finishedTasks) {
-//     if (localStorage.getItem('finishedTasks') === null) {
-//         return finishedTasks = [];
-//     } else {
-//         return finishedTasks = JSON.parse(localStorage.getItem('finishedTasks'));
-//     }
-// }
-//
-// function removeTaskFromLS(task) {
-//     let tasks;
-//
-//     tasks = initTasksInLS(tasks);
-//     tasks.forEach(function(taskItem, index) {
-//         if (task.textContent === taskItem) {
-//             tasks.splice(index, 1);
-//         }
-//     });
-//     localStorage.setItem('tasks', JSON.stringify(tasks));
-// }
-//
-//
-//
-// function storeInLS(task) {
-//     let tasks;
-//
-//     tasks = initTasksInLS(tasks);
-//     tasks.push(task);
-//     localStorage.setItem('tasks', JSON.stringify(tasks));
-// }
-//
-// function addTaskToTaskList() {
-//     addTask(taskList, taskInput.value);
-//     storeInLS(taskInput.value);
-//     taskInput.value = '';
-// }
-//
-// /* ----------------------------- */
-//
-// function addAfterClick() {
-//     if (taskInput.value.length > 0) {
-//         addTaskToTaskList();
-//     }
-// }
-//
-// function addAfterKeyPress() {
-//     if (taskInput.value.length > 0 && event.which == 13) {
-//         addTaskToTaskList();
-//     }
-// }
-//
-// function deleteListItem(e) {
-//     const task = e.target;
-//
-//     if (task.parentElement.classList.contains('food-items')) {
-//         let finishedTasks;
-//
-//         addTaskToFinished(task);
-//         removeTaskFromLS(task);
-//         finishedTasks = initFinishedTasksInLS(finishedTasks);
-//         finishedTasks.push(task.textContent);
-//         localStorage.setItem('finishedTasks', JSON.stringify(finishedTasks));
-//         task.remove();
-//     }
-//
-//     if (task.classList.contains('icon-delete')) {
-//         if (task.parentElement.parentElement.classList.contains('food-items')) {
-//             removeTaskFromLS(task.parentElement);
-//         }
-//         else {
-//             removeFinishedTaskFromLS(task.parentElement);
-//         }
-//         task.parentElement.remove();
-//     }
-// }
-//
-// function clearFinished() {
-//     while (finishedTaskList.firstChild) {
-//         removeFinishedTaskFromLS(finishedTaskList.firstChild);
-//         finishedTaskList.removeChild(finishedTaskList.firstChild);
-//     }
-// }
-//
-//
-//
-// function getTasks() {
-//     let tasks, finishedTasks;
-//
-//     tasks = initTasksInLS(tasks);
-//     finishedTasks = initFinishedTasksInLS(finishedTasks);
-//
-//     tasks.forEach(function(task) {
-//         addTask(taskList, task);
-//     });
-//     finishedTasks.forEach(function(task) {
-//         addTask(finishedTaskList, task);
-//     });
-// }
-//
-// function loadEventListeners() {
-//     addButton.addEventListener('click', addAfterClick);
-//     taskInput.addEventListener('keypress', addAfterKeyPress);
-//     taskList.addEventListener('click', deleteListItem);
-//     finishedTaskList.addEventListener('click', deleteListItem);
-//     document.addEventListener('DOMContentLoaded', getTasks);
-// }
-//
-// loadEventListeners();
+const StorageCtrl = (function() {
+
+    return {
+        /*when getting the items, 'items' is optional*/
+        initItems: function(items) {
+            if (localStorage.getItem('food items') === null) {
+                return items = [];
+            } else {
+                return items = JSON.parse(localStorage.getItem('food items'));
+            }
+        },
+
+        storeItem: function(newItem) {
+            let items;
+
+            items = StorageCtrl.initItems(items);
+            items.push(newItem);
+            localStorage.setItem('food items', JSON.stringify(items));
+        },
+
+        removeItemFromLS: function(id) {
+            let items;
+
+            items = StorageCtrl.initItems(items);
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].id === id) {
+                    console.log(items[i]);
+                    items.splice(i, 1);
+                    break;
+                }
+            }
+            localStorage.setItem('food items', JSON.stringify(items));
+        },
+
+        removeAllItemsFromLS: function(id) {
+            localStorage.setItem('food items', JSON.stringify([]));
+        },
+
+        updateItemInLS: function(updatedItem) {
+            let items;
+            const caloriesNum = parseInt(updatedItem.calories);
+
+            items = StorageCtrl.initItems(items);
+
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].id === updatedItem.id) {
+                    items[i].name = updatedItem.name;
+                    items[i].calories = caloriesNum;
+                    // can use the next line - update whole item insead of parts of it.
+                    // items.splice(i, 1, updatedItem);
+                    break;
+                }
+            }
+            localStorage.setItem('food items', JSON.stringify(items));
+        },
+
+
+        getDataFromLS: function() {
+            let items, totalCal = 0;
+
+            items = StorageCtrl.initItems();
+            items.forEach(function(item) {
+                totalCal += item.calories;
+            });
+
+            return {
+                items: items,
+                totalCal: totalCal
+            }
+        }
+
+    }
+})();
 
 const ItemCtrl = (function() {
     const Item = function(id, name, calories) {
@@ -143,9 +80,9 @@ const ItemCtrl = (function() {
     }
 
     const data = {
-        items: [],
+        items: StorageCtrl.getDataFromLS().items,
         currentItem: null,
-        totalCalories: 0
+        totalCalories: StorageCtrl.getDataFromLS().totalCal
     }
 
     return {
@@ -233,6 +170,7 @@ const ItemCtrl = (function() {
 })();
 
 const UICtrl = (function() {
+
     const UISelectors = {
         itemList: '.food-items',
         listItem: 'li',
@@ -254,7 +192,6 @@ const UICtrl = (function() {
         addListItem: function(item) {
             const listItem = document.createElement('li');
 
-            // listItem.className = 'some-class';
             listItem.id = `item-${item.id}`;
             listItem.innerHTML = `
                 <strong>${item.name}:</strong>&#160;&#160;&#160;
@@ -377,7 +314,8 @@ const UICtrl = (function() {
     }
 })();
 
-const App = (function(ItemCtrl, UICtrl) {
+const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
+
     function submitItem(e) {
         const input = UICtrl.getItemInput();
 
@@ -390,7 +328,8 @@ const App = (function(ItemCtrl, UICtrl) {
         UICtrl.addListItem(newItem);
         const totalCal = ItemCtrl.getTotalCal();
         UICtrl.showTotalCal(totalCal);
-        UICtrl.clearEditState();
+        StorageCtrl.storeItem(newItem);
+        UICtrl.clearInput();
     }
 
     function editItem(e) {
@@ -406,11 +345,11 @@ const App = (function(ItemCtrl, UICtrl) {
     }
 
     function updateItem() {
-        console.log('test');
         const itemInput = UICtrl.getItemInput();
         const updatedItem = ItemCtrl.updateItem(itemInput.name, itemInput.calories);
 
         UICtrl.updateListItem(updatedItem);
+        StorageCtrl.updateItemInLS(updatedItem);
     }
 
     function removeItem() {
@@ -418,11 +357,14 @@ const App = (function(ItemCtrl, UICtrl) {
 
         ItemCtrl.deleteItem(currentItem.id);
         UICtrl.deleteListItem(currentItem.id);
+        StorageCtrl.removeItemFromLS(currentItem.id);
+        console.log(currentItem.id);
     }
 
     function clearAll(e) {
         ItemCtrl.deleteAllItems();
         UICtrl.deleteAllListItems();
+        StorageCtrl.removeAllItemsFromLS();
         e.target.classList.add('close');
     }
 
@@ -450,11 +392,13 @@ const App = (function(ItemCtrl, UICtrl) {
 
             UICtrl.clearEditState();
             UICtrl.populateItemList(items);
+            const totalCal = ItemCtrl.getTotalCal();
+            UICtrl.showTotalCal(totalCal);
             loadEventListeners();
         }
 
     }
 
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, StorageCtrl, UICtrl);
 
 App.init();
