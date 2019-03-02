@@ -76,10 +76,9 @@ footer {
     background-color: rgb(35,35,35);
     padding: 12px;
     font-size: 80%;
-    margin-top: 40px;
+    margin-top: 80px;
     color: grey;
     width: 100%;
-    position: absolute;
     bottom: 0;
 }
 
@@ -153,6 +152,7 @@ input[type=submit] {
     background-color: #fff9e4;
     border-top: 1px solid #F36312;
     border-bottom: 1px solid #F36312;
+    padding: 40px 0;
 }
 
 .sec-items h2 {
