@@ -76,10 +76,9 @@ footer {
     background-color: rgb(35,35,35);
     padding: 12px;
     font-size: 80%;
-    margin-top: 80px;
     color: grey;
+    margin-top: 80px;
     width: 100%;
-    bottom: 0;
 }
 
 /* ---------------------------------------- */
@@ -91,8 +90,25 @@ footer {
     margin: 40px 15%;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: rgb(35,35,35);
+}
+
+.sticky + form {
+  padding-top: 60px;
+}
+
 form {
     margin: 0 auto;
+    overflow: hidden;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
 }
 
 input {
@@ -114,12 +130,17 @@ input[type=submit] {
     padding: 0 !important;
 }
 
+.input-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 #item-input {
-    width: 500px;
+    width: 30%;
 }
 
 #calories-input {
-    width: 200px;
+    width: 30%;
 }
 
 .btn:link,
@@ -132,6 +153,7 @@ input[type=submit] {
     border: 1px solid #F36312;
     color: #F36312;
     margin-left: 100px;
+    width: 60%;
 }
 
 .btn:hover {
@@ -172,25 +194,17 @@ li {
     display: flex;
 }
 
-/* ---------------------------------------- */
-/* EDIT STATE*/
-/* ---------------------------------------- */
 
-.sec-edit {
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    width: 50%;
-}
+/* ---------------------------------------- */
+/* MODALS */
+/* ---------------------------------------- */
 
 .icon-edit {
     margin: 5px 20px;
     margin-left: auto;
 }
-/* ---------------------------------------- */
-/* MODAL */
-/* ---------------------------------------- */
-.modal {
+.modal,
+.modal-edit {
     display: none;
     position: fixed;
     z-index: 1;
@@ -203,18 +217,30 @@ li {
     text-align: center;
 }
 
+.edit-element input {
+    margin-top: 20px;
+}
+
 .modal h3 {
     margin: 30px;
     line-height: 150%;
 }
 
-.modal-content {
+.modal-content,
+.modal-content-edit {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid rgb(150, 150, 150);
     width: 40%;
-    height: 30%;
+    height: 40%;
+}
+
+.modal-content-edit {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    height: 40%;
 }
 
 .btn-modal-v {
@@ -227,4 +253,15 @@ li {
 
 .btn-modal-x:hover {
     color: red;
+}
+
+
+/* ---------------------------------------- */
+/* RESPONSIVENESS */
+/* ---------------------------------------- */
+
+@media(max-width: 1300px) {
+    html {
+        font-size: 1.2em;
+    }
 }

@@ -233,6 +233,9 @@ const UICtrl = (function() {
 
         clearEditState: function() {
             UICtrl.clearInput();
+            const container = document.querySelector('form .input-container');
+            container.appendChild(document.querySelector('#item-input'));
+            container.appendChild(document.querySelector('#calories-input'));
             document.querySelector(UISelectors.editSection).style.display = 'none';
             document.querySelector(UISelectors.addButton).style.display = 'inline-block';
             document.querySelector(UISelectors.clearButton).style.display = 'inline-block';
@@ -240,6 +243,9 @@ const UICtrl = (function() {
 
         showEditState: function() {
             document.querySelector(UISelectors.editSection).style.display = 'flex';
+            const container = document.querySelector('.modal-content-edit .input-container');
+            container.appendChild(document.querySelector('#item-input'));
+            container.appendChild(document.querySelector('#calories-input'));
             document.querySelector(UISelectors.addButton).style.display = 'none';
             document.querySelector(UISelectors.clearButton).style.display = 'none';
         },
@@ -310,6 +316,18 @@ const UICtrl = (function() {
             if (e.target.classList.contains('close')) {
                 document.querySelector(UISelectors.modal).style.display = 'none';
             }
+        },
+
+        showStickyNavigation: function() {
+            const form = document.querySelector('form');
+            const sticky = form.offsetTop;
+
+            if (window.pageYOffset > sticky) {
+                form.classList.add("sticky")
+            } else /*if (window.pageYOffset < sticky - 100)*/{
+                form.classList.remove("sticky");
+            }
+        
         }
     }
 })();
@@ -384,6 +402,10 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
         document.querySelector(uiSelectors.modalButtonV).addEventListener('click', clearAll);
         document.querySelector(uiSelectors.clearButton).addEventListener('click', UICtrl.showModal);
         document.querySelector(uiSelectors.modal).addEventListener('click', e => UICtrl.hideModal(e));
+        document.addEventListener('scroll', UICtrl.showStickyNavigation);
+        window.onscroll = UICtrl.showStickyNavigation;
+
+
     }
 
     return {

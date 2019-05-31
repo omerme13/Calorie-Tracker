@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Calorie Tracker</title>
         <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
@@ -13,25 +15,32 @@
 
         <section class="sec-menu">
             <form>
-                <input id="item-input" type="text" placeholder="Add item">
-                <input id="calories-input" type="number" placeholder="Add calories">
+                <div class="input-container">
+                    <input id="item-input" type="text" placeholder="Add item">
+                    <input id="calories-input" type="number" placeholder="Add calories">
+                </div>
                 <input type="submit" value="+">
                 <a class="btn clear-tasks" href="#/">Clear all</a>
             </form>
         </section>
 
-        <section class="sec-edit">
-            <div class="edit-element">
-                <h2>Update</h2>
-                <a class="ion-compose icon-update icons icons-big" href="#/"></a>
-            </div>
-            <div class="edit-element">
-                <h2>Delete</h2>
-                <a class="ion-trash-a icon-delete icons icons-big" href="#/"></a>
-            </div>
-            <div class="edit-element">
-                <h2>Cancel</h2>
-                <a class="ion-backspace-outline icon-back icons icons-big" href="#/"></a>
+        <section class="sec-edit modal-edit">
+            <div class="modal-content-edit">
+                <div class="edit-element">
+                    <h2>Update</h2>
+                    <a class="ion-compose icon-update icons icons-big" href="#/"></a>
+                </div>
+                <div class="edit-element">
+                    <h2>Delete</h2>
+                    <a class="ion-trash-a icon-delete icons icons-big" href="#/"></a>
+                </div>
+                <div class="edit-element">
+                    <h2>Cancel</h2>
+                    <a class="ion-backspace-outline icon-back icons icons-big" href="#/"></a>
+                </div>
+                <div class="edit-element input-container">
+
+                </div>
             </div>
         </section>
 
