@@ -189,7 +189,7 @@ li {
     color: inherit;
     background-color: #fff;
     width: 50%;
-    min-width: 200px;
+    min-width: 220px;
     font-weight: 400;
     transition: background 0.2s;
     display: flex;
@@ -271,7 +271,7 @@ li {
     }
 
     .sec-menu {
-        margin: 0px;
+        margin: 5px;
     }
 
     .btn:link {
@@ -285,5 +285,10 @@ li {
 
     .input-container {
         margin: 5px;
+    }
+
+    li {
+        display: flex;
+        flex-wrap: wrap;
     }
 }
