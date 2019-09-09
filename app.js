@@ -236,13 +236,23 @@ const UICtrl = (function() {
             const container = document.querySelector('form .input-container');
             container.appendChild(document.querySelector('#item-input'));
             container.appendChild(document.querySelector('#calories-input'));
-            document.querySelector(UISelectors.editSection).style.display = 'none';
+
+            document.querySelector(UISelectors.editSection).classList.add("modal-hide");
+            document.querySelector(UISelectors.editSection).classList.remove("modal-show");
+            document.querySelector(".modal-background").style.display = 'none';
+
+
             document.querySelector(UISelectors.addButton).style.display = 'inline-block';
             document.querySelector(UISelectors.clearButton).style.display = 'inline-block';
         },
 
         showEditState: function() {
-            document.querySelector(UISelectors.editSection).style.display = 'flex';
+
+            document.querySelector(UISelectors.editSection).classList.add("modal-show");
+            document.querySelector(UISelectors.editSection).classList.remove("modal-hide");
+            document.querySelector(".modal-background").style.display = 'block';
+
+            
             const container = document.querySelector('.modal-content-edit .input-container');
             container.appendChild(document.querySelector('#item-input'));
             container.appendChild(document.querySelector('#calories-input'));
@@ -308,13 +318,18 @@ const UICtrl = (function() {
             const items = ItemCtrl.getItems();
 
             if (items.length) {
-                document.querySelector(UISelectors.modal).style.display = 'block';
+                document.querySelector(".modal-background").style.display = 'block';
+                document.querySelector(".modal").classList.remove("modal-hide");
+                document.querySelector(".modal").classList.add("modal-show");
+
             }
         },
 
         hideModal: function(e) {
             if (e.target.classList.contains('close')) {
-                document.querySelector(UISelectors.modal).style.display = 'none';
+                document.querySelector(".modal-background").style.display = 'none';
+                document.querySelector(".modal").classList.add("modal-hide");
+                document.querySelector(".modal").classList.remove("modal-show");
             }
         },
 
