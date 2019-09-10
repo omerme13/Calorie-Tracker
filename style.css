@@ -208,9 +208,10 @@ li {
 .icon-edit {
     margin: 5px 0px 5px auto;
 }
+
 .modal,
 .modal-edit {
-    display: block;
+    transform: translateY(-100vh) scale(0.5);
     position: fixed;
     z-index: 1;
     width: 100%;
