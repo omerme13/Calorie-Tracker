@@ -211,7 +211,7 @@ li {
 
 .modal,
 .modal-edit {
-    transform: translateY(-100vh) scale(0.5);
+    transform: translateY(-10vh) scale(0.5);
     position: fixed;
     z-index: 1;
     width: 100%;
@@ -258,21 +258,21 @@ li {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    height: 40%;
     transform: translateY(0);
     transition: 0.5s;
 }
 
 .modal-hide {
-    transform: translateY(-100vh) scale(0.5);
+    transform: translateY(-10vh) scale(0.7);
+    visibility: hidden;
     opacity: 0;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .modal-show {
     transform: translateY(0) scale(1);
     opacity: 1;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .btn-modal-v {
